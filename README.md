@@ -67,3 +67,13 @@ attendance-system/
 │   └── migrations.sql            # SQL script for creating tables
 │
 └── README.md
+
+
+
+### Discussions
+- Google AI Mode:
+https://share.google/aimode/BB0DAJ9qvKvZkeuD1
+
+- ChatGPT:
+https://chatgpt.com/c/690bd79e-88b8-832d-98ed-6dff7351f81e
+
