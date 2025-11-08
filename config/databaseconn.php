@@ -12,6 +12,7 @@ $password = "";
 # Database name
 $databasename = "ashesiwtattendancemanagement";
 
+# Need to specify the port, as we use 3307 instead of default 3306
 $port = 3307;
 
 # Create a connection
