@@ -1,5 +1,5 @@
 <?php
-    include("../includes/session.php");
+    include_once("../includes/nosession.php");
 
-    echo "<h2> Welcome " . $_SESSION['old_fname'] . " " . $_SESSION['old_lname'] . "</h2>";
+    echo "<h2>" . $_SESSION['fName'] . " " . $_SESSION['lName'] . ": Welcome to " . $_SESSION['role'] . " Dashboard!</h2>";
 ?>

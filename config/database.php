@@ -15,5 +15,5 @@
     }
 
     // Message
-    echo "Connected Successfully to the Database!\n";
+    //echo "Connected Successfully to the Database!\n";
 ?>

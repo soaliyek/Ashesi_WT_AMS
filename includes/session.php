@@ -1,13 +1,22 @@
 <?php
+session_start();
 
-    session_start();
-
-    if (!(isset($_SESSION["auth"]) && $_SESSION["auth"] === true)) {
-        
-        // Redirect based on role
-        header("Location: ../bauthentication/usersignin.php");
-        exit();
-    }
-
+if (isset($_SESSION["auth"]) && $_SESSION["auth"] === true) {
     
+    // Redirect based on role
+    switch($_SESSION["role"]) {
+        case "student":
+            header("Location: ../student/dashboard.php");
+            exit();
+        case "faculty":
+            header("Location: ../faculty/dashboard.php");
+            exit();
+        case "admin":
+            header("Location: ../admin/dashboard.php");
+            exit();
+    }
+}else{
+    header("Location: ../authentication/usersignin.php");
+    exit();
+} 
 ?>

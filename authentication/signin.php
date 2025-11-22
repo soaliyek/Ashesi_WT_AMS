@@ -17,7 +17,7 @@ if (isset($_SESSION["auth"]) && $_SESSION["auth"] === true) {
     }
 }
 
-require("../aconfig/database.php");
+require("../config/database.php");
 
 // Only handle POST requests
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
