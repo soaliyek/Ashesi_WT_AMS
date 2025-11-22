@@ -7,99 +7,99 @@ body{
     font-family: monospace;
 }
 
-/* #content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 700px;
-    width: 100%;
-} */
-
-#signup{
+#signup, #signin{
     display: flex;
     flex-direction: row;
     margin: auto;
     max-width: 700px;
+    min-height: 380px;
     /* height: 400px; */
     background-color: rgb(255, 255, 255);
     margin-top: 10%;
     box-shadow: 5px 5px 50px 5px rgb(101, 37, 37);
 }
 
-#title{
-    margin-top: 20px;
-    margin-bottom: 30px;
-    /* background-color: aquamarine; */
-}
-
-#title h1{
-    color: var(--my_red);
-}
-
-#functional{
+.part{
     display: flex;
+    width: 50%;
     flex-direction: column;
     align-items: center;
-    width: 50%;
-    /* background-color: blueviolet; */
 }
 
-#data{
+.form_title{
+    display: flex;
+    height: 100px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_data{
     display: flex;
     flex-direction: column;
     width: 80%;
-    /* background-color: blue; */
 }
 
-.entry{
+.form_data .entry, select{
     border: none;
     height: 30px;
+    width: 100%;
     font-size: large;
     margin-top: 15px;
     /* border-bottom: solid black; */
 }
-.entry:focus{
+.form_data .entry:focus, select:focus{
     outline: none;
     border: none;
 }
+
+
 
 input[type = "password"]:not(:placeholder-shown){
     letter-spacing: 5px;
 }
 
-#change{
+
+
+
+.additonals{
+    margin-top: -10px;
+    margin-bottom: -10px;
     width: 80%;
-    height: 30px;
-    margin-top: 10px;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
 }
 
-#button{
-    width: 80%;
-    height: 60px;
-    margin-top: 20px;
+.button{
     display: flex;
     justify-content: center;
-    /* background-color: aqua; */
+    align-items: center;
+    height: 80px;
+    width: 100%;
 }
-#login_button{
-    border: none;
-    width: 40%;
+
+.button input{
     height: 40px;
+    width: 130px;
+    border: none;
     border-radius: 7px;
     font-size: large;
     background-color: var(--my_red);
     color: white;
 }
 
-#signup #image{
+
+
+/* #part2{
+    display: none;
+} */
+
+#image{
     width: 50%;
-    background-image: url("../uploads/ashesi_university_img0.jpg");
+    background-image: url("../images/ashesi_university_img0.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     /* background-position: center; */
 }
+

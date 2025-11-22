@@ -1,3 +1,3 @@
 <?php
-include("../includes/index.php");
+    include("../includes/index.php");
 ?>
