@@ -18,6 +18,6 @@
         }
     }
 
-    header("Location: bauthentication/usersignup.php");
+    header("Location: ../authentication/usersignup.php");
     exit();
 ?>
