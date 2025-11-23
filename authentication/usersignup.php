@@ -17,13 +17,9 @@
 </head>
 <body>
     <div id="remarks">
-        <?php
-            if(isset($_SESSION["error"])){
-                echo "<h3>" . $_SESSION['error'] . "</h3>";
-            }
-        ?>
+        
     </div>
-    <form id="signup" action="signup.php" method="POST">
+    <form id="signup">
         <div id="image">
 
         </div>
@@ -34,6 +30,13 @@
             <div class="form_data">
                 <input type="text" name="fname" id="fname" class="entry" placeholder="First Name">
                 <input type="text" name="lname" id="lname" class="entry" placeholder="Last Name">
+                <div id="roleselection">
+                    <select name="role" id="role">
+                        <option value="0">Select Your Role</option>
+                            <option value="student">Student</option>
+                            <option value="faculty">Faculty</option>
+                    </select>
+                </div>
                 <input type="number" name="studentid" id="studentid" class="entry" placeholder="Student ID">
                 <div id="majorselection">
                     <select name="major" id="major">

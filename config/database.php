@@ -1,13 +1,9 @@
 <?php
     // Create Database Connection Infomation
-    $server = "localhost";
-    $user = "root";
-    $password = "";
-    $database = "ashesiwtattendancemanagement";
-    $port = 3307;
+    $env = parse_ini_file(__DIR__ . "/../env/connect.env");
 
     // Create a connection
-    $connection = new mysqli($server, $user, $password, $database, $port);
+    $connection = new mysqli($env["server"], $env["user"], $env["password"], $env["database"], $env["port"]);
 
     // Check if connection established
     if($connection->connect_error){

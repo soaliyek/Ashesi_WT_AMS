@@ -21,7 +21,7 @@
     <div id="remarks">
 
     </div>
-    <form id="signin" action="signin.php" method="POST">
+    <form id="signin">
 
         <div id="part2" class="part">
             <div class="form_title">
@@ -45,6 +45,6 @@
         </div>
     </form>
 
-    <!-- <script src="../public/js/signupvalidation.js"></script> -->
+    <script src="../public/js/signinvalidation.js"></script>
 </body>
 </html>

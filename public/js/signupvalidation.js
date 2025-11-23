@@ -1,12 +1,11 @@
-
-function next(){
+function next() {
     const personalinfo = document.getElementById("part1");
     const accountinfo = document.getElementById("part2");
 
     personalinfo.style.display = "none";
     accountinfo.style.display = "flex";
 }
-function prev(){
+function prev() {
     const personalinfo = document.getElementById("part1");
     const accountinfo = document.getElementById("part2");
 
@@ -14,67 +13,80 @@ function prev(){
     accountinfo.style.display = "none";
 }
 
-
-// Validation code
-function validate(e){
-    e.preventDefault();
-
-    const fname = document.getElementById("fname");
-    const lname = document.getElementById("lname");
-    const id = document.getElementById("studentid");
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-    const cpassword = document.getElementById("cpassword");
-
-    const remarks = document.getElementById("remarks");
-    const elems = [validName(fname.value), validName(lname.value), validID(id.value), validEmail(email.value), validPass(password.value), passMatch(password.value, cpassword.value)];
-    const remarkelems = [];
-    const remartypes = [
-        "First Name Not Supported", "Last Name Not Supported",
-        "ID Must Be 8 Digits Long", "Must Be an Ashesi Email",
-        "Password Not Strong Enough", "Password Does Not Match"
-    ];
-
-    for(let i = 0; i < 6; i++){
-        remarkelems[i] = document.createElement("p");
-        remarkelems[i].innerText = remartypes[i];
-        if(!elems[i]){
-            remarks.appendChild(remarkelems[i]);
-        }
-    }
-
-    const allValid = elems.every(Boolean);
-    if(allValid){
-        const form = e.target;
-        form.submit();
-    }else{
-        console.log(elems);
-    }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("signup");
     form.addEventListener("submit", validate);
 });
 
+function validate(e) {
+    e.preventDefault();
 
-const validName = (name) => {
-    const regex = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    return !regex.test(name);
+    const remarks = document.getElementById("remarks");
+    remarks.innerHTML = "";
+
+    const fname = document.getElementById("fname").value.trim();
+    const lname = document.getElementById("lname").value.trim();
+    const role = document.getElementById("role").value;
+    const studentId = document.getElementById("studentid").value.trim();
+    const major = document.getElementById("major").value;
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const cpassword = document.getElementById("cpassword").value;
+
+    // Client-side validation
+    const errors = [];
+
+    if (!validName(fname)) errors.push("Invalid First Name.");
+    if (!validName(lname)) errors.push("Invalid Last Name.");
+
+    if (role === "0") errors.push("Please select a role.");
+
+    if (role === "student") {
+        if (!validID(studentId)) errors.push("Student ID must be 8 digits.");
+        if (major === "0") errors.push("Please select your major.");
+    }
+
+    if (!validEmail(email)) errors.push("Email must be an Ashesi email.");
+    if (!validPass(password)) errors.push("Password not strong enough.");
+    if (!passMatch(password, cpassword)) errors.push("Passwords do not match.");
+
+    if (errors.length > 0) {
+        errors.forEach(err => {
+            const p = document.createElement("p");
+            p.innerText = err;
+            remarks.appendChild(p);
+        });
+        return;
+    }
+
+    const formData = new FormData(e.target);
+
+    fetch("../api/signup.php", {
+        method: "POST",
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            const p = document.createElement("p");
+            p.innerText = data.message;
+            remarks.appendChild(p);
+
+            if (data.status === "success") {
+                setTimeout(() => {
+                    window.location.href = "usersignin.php";
+                }, 1500);
+            }
+        })
+        .catch(error => {
+            const p = document.createElement("p");
+            p.innerText = error;
+            remarks.appendChild(p);
+        });
 }
 
-function validID(id){
-    return id.trim().length == 8;
-}
-
-function validEmail(email){
-    return email.includes("@ashesi.edu.gh");
-}
-
-function validPass(password){
-    return password.trim().length >= 8;
-}
-
-function passMatch(password, cpassword){
-    return password.trim() == cpassword.trim();
-}
+const validName = (name) => /^[\p{L} '-]+$/u.test(name);
+const validID = (id) => /^[0-9]{8}$/.test(id);
+const validEmail = (email) => email.endsWith("@ashesi.edu.gh");
+const validPass = (password) => password.trim().length >= 8;
+const passMatch = (p, cp) => p === cp;
