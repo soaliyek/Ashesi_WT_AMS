@@ -62,6 +62,34 @@ $_SESSION["lName"] = $user["lName"];
 $_SESSION["email"] = $user["email"];
 $_SESSION["role"] = $user["role"];
 
+if ($user["role"] == "student") {
+
+    $studentQuery = $connection->prepare("
+        SELECT studentId
+        FROM Students
+        WHERE userId = ?
+    ");
+    $studentQuery->bind_param("i", $user["userId"]);
+    $studentQuery->execute();
+    $myResult = $studentQuery->get_result();
+    $student = $myResult->fetch_assoc();
+    $_SESSION["studentId"] = $student["studentId"];
+
+} else {
+
+    $facultyQuery = $connection->prepare("
+        SELECT facultyId
+        FROM Faculty
+        WHERE userId = ?
+    ");
+    $facultyQuery->bind_param("i", $user["userId"]);
+    $facultyQuery->execute();
+    $myResult = $facultyQuery->get_result();
+    $faculty = $myResult->fetch_assoc();
+    $_SESSION["facultyId"] = $faculty["facultyId"];
+}
+
+
 
 // ======================| SEND JSON RESPONSE
 echo json_encode([

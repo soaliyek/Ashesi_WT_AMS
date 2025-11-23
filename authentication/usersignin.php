@@ -2,6 +2,8 @@
 
     include("../config/database.php");
 
+    
+
     // Get All majors in the database
     $majorsQuery = "SELECT majorName FROM majors ORDER BY majorName";
     $majors = $connection->query($majorsQuery);

@@ -1,0 +1,108 @@
+:root{
+    --my_red: #a83b40;
+}
+
+body{
+    background-color: var(--my_red);
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+
+
+#dashboard{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 800px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 50px 5px rgb(101, 37, 37);
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--my_red);
+    width: 100%;
+    margin-top: 10px;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 55%;
+    height: 60px;
+    /* background-color: blue; */
+}
+
+nav a{
+    background-color: #913a3e;
+    width: 33%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    text-decoration: none;
+}
+nav a p{
+    font-size: x-large;
+    color: white;
+}
+
+#profile{
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+}
+#profile #picture{
+    /* background-color: rgb(30, 91, 91); */
+    height: 60px;
+    width: 60px;
+}
+#profile #picture img{
+    background-color: azure;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+#profile #text{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 5px;
+}
+#profile #text p{
+    margin: 0;
+    font-size:x-large;
+}
+.bold{
+    font-weight: bold;
+}
+
+#siguout{
+    /* background-color: black; */
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#siguout button{
+    border: none;
+    height: 80%;
+    width: 100%;
+    font-size: x-large;
+    font-family: monospace;
+    border-radius: 20px;
+    background-color: white;
+    color: var(--my_red);
+}
+#siguout button:hover{
+    cursor: pointer;
+}
