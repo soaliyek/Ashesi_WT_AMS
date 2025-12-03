@@ -2,11 +2,11 @@
     ini_set("display_errors", 1);
     ini_set("display_startup_errors", 1);
     error_reporting(E_ALL);
-    
+
     include("../config/database.php");
 
     // Get All majors in the database
-    $majorsQuery = "SELECT majorName, majorId FROM majors ORDER BY majorName";
+    $majorsQuery = "SELECT majorName, majorId FROM Majors ORDER BY majorName";
     $majors = $connection->query($majorsQuery);
 
 ?>
