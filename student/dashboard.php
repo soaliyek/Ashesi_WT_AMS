@@ -24,15 +24,9 @@
     }
 
     include("../config/database.php");
+    include_once("../sql/queries.php");
 
-    // Get All courses in the database
-    //$coursesQuery = "SELECT courseId, deptId, courseCode, courseName FROM courses ORDER BY courseCode";
-    //$courses = $connection->query($coursesQuery);
-
-    // userId
-    // Does not work
-    //$myCoursesQuery = $connection->prepare("SELECT courseId, courseCode, courseName FROM courses JOIN enrollments ON course.courseID = enrollments.courseID WHERE studentId = ? ORDER BY courseCode");
-    //$myCoursesQuery->bind_param('s', $_SESSION["studentID"]);
+    $courses = $connection->query($findallcourses);
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +69,11 @@
                 <h1>Student</h1>
             </div>
             <div id="allcourses" class="content">
-                
+                <?php while($course = $courses->fetch_assoc()): ?>
+                    <div class="course">
+                        <p> <b><?= $course['courseCode']; ?></b> <?= $course['courseName']; ?> </p>
+                    </div>
+                <?php endwhile; ?>
             </div>
             <div id="allmyenrolments" class="content">
                 
