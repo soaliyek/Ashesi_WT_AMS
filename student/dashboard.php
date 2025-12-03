@@ -41,13 +41,13 @@
     <div id="dashboard">
         <header>
             <nav>
-                <a href="" id="mycourses">
+                <a href="" id="mycourses" onclick = "divswitch('mycourses');">
                     <p>My Cources</p>
                 </a>
-                <a href="" id="courses">
+                <a href="" id="courses" onclick = "divswitch('courses');">
                     <p>Courses</p>
                 </a>
-                <a href="" id="enrollments">
+                <a href="" id="enrollments" onclick = "divswitch('enrollments');">
                     <p>Enrollments</p>
                 </a>
             </nav>
@@ -71,7 +71,15 @@
             <div id="allcourses" class="content">
                 <?php while($course = $courses->fetch_assoc()): ?>
                     <div class="course">
-                        <p> <b><?= $course['courseCode']; ?></b> <?= $course['courseName']; ?> </p>
+                        <div class="courseCode">
+                            <?= $course['courseCode']; ?>
+                        </div>
+                        <div class="courseName">
+                            <?= $course['courseName']; ?>
+                        </div>
+                        <div class="enrollmentBotton">
+                            <button type="button">Enroll</button>
+                        </div>
                     </div>
                 <?php endwhile; ?>
             </div>
@@ -81,5 +89,6 @@
         </div>
     </div>
     <script src="../public/js/logout.js"></script>
+    <script src="../public/js/dashboard.js"></script>
 </body>
 </html>
