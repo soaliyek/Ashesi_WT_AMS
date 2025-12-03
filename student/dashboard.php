@@ -72,7 +72,7 @@
         </header>
         <div id="main">
             <div id="allmycourses" class="content">
-
+                <h1>Student</h1>
             </div>
             <div id="allcourses" class="content">
                 
