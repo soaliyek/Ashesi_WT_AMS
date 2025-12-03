@@ -68,9 +68,6 @@
             </div>
         </header>
         <div id="main">
-            <div id="allmycourses" class="content">
-
-            </div>
             <div id="allcourses" class="content">
                 
             </div>
