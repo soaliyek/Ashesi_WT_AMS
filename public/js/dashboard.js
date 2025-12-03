@@ -7,6 +7,7 @@ function divswitch(identifier){
     const allcourses = document.getElementById("allcourses");
     const allenrollments = document.getElementById("allmyenrollments");
     
+    /*
     if(identifier === "mycourses"){
         mycourses.style.backgroundColor = "white";
         mycourses.style.color = "black";
@@ -17,4 +18,5 @@ function divswitch(identifier){
         enrollments.style.backgroundColor = "white";
         enrollments.style.color = "black";
     }
+        */
 }
