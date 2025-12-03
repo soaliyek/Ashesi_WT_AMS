@@ -35,16 +35,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/css/dashboard.css">
-    <title><?php echo $_SESSION['fName'] . " " . $_SESSION['lName'] . " - Dashboard" ?></title>
+    <title><?php echo $_SESSION['fName'] . " " . $_SESSION['lName'] . " - Courses" ?></title>
 </head>
 <body>
     <div id="dashboard">
         <?php include_once("../includes/sheader.php"); ?>
 
         <div id="main">
-            <div id="allmycourses" class="content">
-                
-            </div>
             <div id="allcourses" class="content">
                 <?php while($course = $courses->fetch_assoc()): ?>
                     <div class="course">
@@ -53,16 +50,13 @@
                         </div>
                         <div class="courseName">
                             <p class="bold"><?= $course['courseName']; ?></p>
-                            <p>Department Name</p>
+                            <p><?= $course['deptName']; ?></p>
                         </div>
                         <div class="enrollmentButton">
-                            <button type="button">Enroll</button>
+                            <button value="<?= $course['courseId']; ?>" type="button" class="enrollButton">Enroll</button>
                         </div>
                     </div>
                 <?php endwhile; ?>
-            </div>
-            <div id="allmyenrolments" class="content">
-                
             </div>
         </div>
     </div>

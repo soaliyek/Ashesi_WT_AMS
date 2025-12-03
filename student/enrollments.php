@@ -26,7 +26,24 @@
     include("../config/database.php");
     include_once("../sql/queries.php");
 
-    $courses = $connection->query($findallcourses);
+    $studentId = $_SESSION['studentId'];
+
+    $getrequests = $connection->prepare("
+        SELECT 
+            c.courseId, 
+            c.courseCode, 
+            c.courseName, 
+            d.deptName,
+            er.rstatus
+        FROM Enrollrequests er
+        INNER JOIN Courses c ON er.courseId = c.courseId
+        INNER JOIN Departments d ON c.deptId = d.deptId
+        WHERE er.studentId = ?
+    ");
+    $getrequests->bind_param("s", $studentId);
+    $getrequests->execute();
+    $requests = $getrequests->get_result();
+
 ?>
 
 <!DOCTYPE html>
@@ -42,27 +59,33 @@
         <?php include_once("../includes/sheader.php"); ?>
 
         <div id="main">
-            <div id="allmycourses" class="content">
-                
+            <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+                <?php
+                    if($requests->num_rows === 0){
+                        echo "<h1 ><i>No Request Found!</i></h1>";
+                    }
+                ?>
             </div>
-            <div id="allcourses" class="content">
-                <?php while($course = $courses->fetch_assoc()): ?>
+            <div id="allmyenrolments" class="content">
+                <?php while($request = $requests->fetch_assoc()): ?>
                     <div class="course">
                         <div class="courseCode">
-                            <p class="bold"><?= $course['courseCode']; ?></p>
+                            <p class="bold"><?= $request['courseCode']; ?></p>
                         </div>
                         <div class="courseName">
-                            <p class="bold"><?= $course['courseName']; ?></p>
-                            <p>Department Name</p>
+                            <p class="bold"><?= $request['courseName']; ?></p>
+                            <p><?= $request['deptName']; ?></p>
                         </div>
                         <div class="enrollmentButton">
-                            <button type="button">Enroll</button>
+                            <?php
+                            $color = $request['rstatus'] === 'Approved' ? 'green' :
+                                    ($request['rstatus'] === 'Rejected' ? 'red' : 'orange');
+                            ?>
+                            <p style="background-color: <?= $color ?>;"><?= htmlspecialchars($request['rstatus']); ?></p>
+                            <!--<button value="" type="button" class="enrollButton">Enroll</button> -->
                         </div>
                     </div>
                 <?php endwhile; ?>
-            </div>
-            <div id="allmyenrolments" class="content">
-                
             </div>
         </div>
     </div>

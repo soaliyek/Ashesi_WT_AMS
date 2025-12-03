@@ -20,3 +20,44 @@ function divswitch(identifier){
     }
         */
 }
+
+const enrollButtons = document.querySelectorAll(".enrollButton");
+enrollButtons.forEach(button =>{
+    button.addEventListener("click", function(e){
+        //console.log("CourseID:", e.target.value, "Operation:", e.target.innerHTML);
+
+        const request = new XMLHttpRequest();
+        const data =  new FormData();
+
+        data.append("courseId", e.target.value);
+        data.append("operation", e.target.innerHTML.trim());
+
+        request.open("POST", "../api/courseop.php", true);
+        //request.setRequestHeader("Content-Type", "application/json");
+
+        request.onreadystatechange = function(){
+            if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
+                // Process the reponse
+                const response = JSON.parse(request.responseText);
+                //console.log("Successful: ", request.responseText);
+                //console.log("Response:", request.responseText);
+                //console.log("Response:", response);
+
+                if(response.status === "success"){
+                    if(e.target.innerHTML.trim() === "Enroll"){
+                        e.target.innerHTML = "Withdraw";
+                        e.target.style = "background-color: red;"
+                    }else{
+                        e.target.innerHTML = "Enroll";
+                        e.target.style = "background-color: green;"
+                    }
+                }
+
+            }else if(request.readyState === XMLHttpRequest.DONE && request.status !== 200){
+                console.log("Error:", request.status, request.statusText);
+            }
+        }
+
+        request.send(data);
+    });
+});

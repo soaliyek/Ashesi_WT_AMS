@@ -48,6 +48,9 @@
         <header>
             <nav>
                 <a href="" id="courses">
+                    <p>Registrar</p>
+                </a>
+                <a href="" id="courses">
                     <p>Courses</p>
                 </a>
                 <a href="" id="enrollments">
