@@ -176,3 +176,12 @@ nav a p{
     justify-content: center;
     align-items: center;
 }
+.enrollButton.enrollable {
+    background-color: green;
+    color: white;
+}
+
+.enrollButton.withdrawn {
+    background-color: red;
+    color: white;
+}

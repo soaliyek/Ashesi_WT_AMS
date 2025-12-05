@@ -43,13 +43,16 @@ enrollButtons.forEach(button =>{
                 //console.log("Response:", request.responseText);
                 //console.log("Response:", response);
 
-                if(response.status === "success"){
-                    if(e.target.innerHTML.trim() === "Enroll"){
+                // In your AJAX success:
+                if (response.status === "success") {
+                    if (e.target.innerHTML.trim() === "Enroll") {
                         e.target.innerHTML = "Withdraw";
-                        e.target.style = "background-color: red;"
-                    }else{
+                        e.target.classList.remove("enrollable");
+                        e.target.classList.add("withdrawn");
+                    } else {
                         e.target.innerHTML = "Enroll";
-                        e.target.style = "background-color: green;"
+                        e.target.classList.remove("withdrawn");
+                        e.target.classList.add("enrollable");
                     }
                 }
 

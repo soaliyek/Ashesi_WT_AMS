@@ -31,6 +31,21 @@
     include_once("../sql/queries.php");
 
     $courses = $connection->query($findallcourses);
+
+
+    // Get all course IDs the student is already enrolled in
+    $studentId = $_SESSION['studentId'];
+
+    $stmt = $connection->prepare("SELECT courseId FROM EnrollRequests WHERE studentId = ?");
+    $stmt->bind_param("s", $studentId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $enrolled_course_ids = [];
+    while ($row = $result->fetch_assoc()) {
+        $enrolled_course_ids[] = $row['courseId'];
+    }
+    $stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +72,13 @@
                             <p><?= $course['deptName']; ?></p>
                         </div>
                         <div class="enrollmentButton">
-                            <button value="<?= $course['courseId']; ?>" type="button" class="enrollButton">Enroll</button>
+                            <?php $isEnrolled = in_array($course['courseId'], $enrolled_course_ids); ?>
+                            <button 
+                                value="<?= $course['courseId']; ?>" 
+                                type="button" 
+                                class="enrollButton <?= $isEnrolled ? 'withdrawn' : 'enrollable' ?>">
+                                <?= $isEnrolled ? "Withdraw" : "Enroll" ?>
+                            </button>
                         </div>
                     </div>
                 <?php endwhile; ?>
