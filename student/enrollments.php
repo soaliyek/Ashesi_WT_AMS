@@ -2,7 +2,7 @@
     ini_set("display_errors", 1);
     ini_set("display_startup_errors", 1);
     error_reporting(E_ALL);
-    
+
     session_start();
 
     if (!(isset($_SESSION["auth"]) && $_SESSION["auth"] === true)) {
@@ -39,7 +39,7 @@
             c.courseName, 
             d.deptName,
             er.rstatus
-        FROM Enrollrequests er
+        FROM EnrollRequests er
         INNER JOIN Courses c ON er.courseId = c.courseId
         INNER JOIN Departments d ON c.deptId = d.deptId
         WHERE er.studentId = ?
