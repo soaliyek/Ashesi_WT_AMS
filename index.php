@@ -7,13 +7,13 @@
         // Redirect based on role
         switch($_SESSION["role"]) {
             case "student":
-                header("Location: student/dashboard.php");
+                header("Location: student/courses.php");
                 exit();
             case "faculty":
-                header("Location: faculty/dashboard.php");
+                header("Location: faculty/courses.php");
                 exit();
             case "admin":
-                header("Location: admin/dashboard.php");
+                header("Location: admin/courses.php");
                 exit();
         }
     }

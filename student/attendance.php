@@ -15,13 +15,13 @@
         if($_SESSION["role"] != "student"){
             switch($_SESSION["role"]) {
                 case "student":
-                    header("Location: ../student/dashboard.php");
+                    header("Location: ../student/courses.php");
                     exit();
                 case "faculty":
-                    header("Location: ../faculty/dashboard.php");
+                    header("Location: ../faculty/courses.php");
                     exit();
                 case "admin":
-                    header("Location: ../admin/dashboard.php");
+                    header("Location: ../admin/courses.php");
                     exit();
             }
         }
@@ -46,26 +46,7 @@
         <?php include_once("../includes/sheader.php"); ?>
 
         <div id="main">
-            <div id="allmycourses" class="content">
-                
-            </div>
-            <div id="allcourses" class="content">
-                <?php while($course = $courses->fetch_assoc()): ?>
-                    <div class="course">
-                        <div class="courseCode">
-                            <p class="bold"><?= $course['courseCode']; ?></p>
-                        </div>
-                        <div class="courseName">
-                            <p class="bold"><?= $course['courseName']; ?></p>
-                            <p>Department Name</p>
-                        </div>
-                        <div class="enrollmentButton">
-                            <button type="button">Enroll</button>
-                        </div>
-                    </div>
-                <?php endwhile; ?>
-            </div>
-            <div id="allmyenrolments" class="content">
+            <div id="attendance" class="content">
                 
             </div>
         </div>
