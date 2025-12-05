@@ -26,13 +26,13 @@ if($courseId === "" || $operation === "" || $studentId === ""){
 
 // Operation
 if($operation === "Enroll"){
-    re("error", "Arrived Here!");
+    //re("error", "Arrived Here!");
     $enroll = $connection->prepare("
         INSERT INTO EnrollRequests (studentId, courseId, status)
         VALUES (?, ?, 'pending')
     ");
     $enroll->bind_param("si", $studentId, $courseId);
-
+    re("error", "Arrived Here tooo!");
     if(!$enroll->execute()){
         re("error", "Could Not Register");
     }
