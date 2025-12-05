@@ -27,7 +27,7 @@ if($courseId === "" || $operation === "" || $studentId === ""){
 // Operation
 if($operation === "Enroll"){
     $enroll = $connection->prepare("
-        INSERT INTO Enrollrequests (studentId, courseId, status)
+        INSERT INTO EnrollRequests (studentId, courseId, status)
         VALUES (?, ?, 'pending')
     ");
     $enroll->bind_param("si", $studentId, $courseId);
@@ -38,7 +38,7 @@ if($operation === "Enroll"){
 }
 else if($operation === "Withdraw"){
     $cancel = $connection->prepare("
-        DELETE FROM Enrollrequests 
+        DELETE FROM EnrollRequests 
         WHERE studentId = ? AND courseId = ?
     ");
 
