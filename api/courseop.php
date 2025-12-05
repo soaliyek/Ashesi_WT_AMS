@@ -26,6 +26,7 @@ if($courseId === "" || $operation === "" || $studentId === ""){
 
 // Operation
 if($operation === "Enroll"){
+    re("error", "Arrived Here!");
     $enroll = $connection->prepare("
         INSERT INTO EnrollRequests (studentId, courseId, status)
         VALUES (?, ?, 'pending')
