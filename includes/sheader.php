@@ -1,13 +1,16 @@
 <header>
     <nav>
         <a href="mycourses.php" id="mycourses">
-            <p>My Cources</p>
+            <p>My Courses</p>
         </a>
         <a href="courses.php" id="courses">
             <p>Courses</p>
         </a>
         <a href="enrollments.php" id="enrollments">
             <p>Enrollments</p>
+        </a>
+        <a href="attendance.php" id="attendance">
+            <p>Attendance</p>
         </a>
     </nav>
     <div id="profile">
