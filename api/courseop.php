@@ -32,7 +32,7 @@ if($operation === "Enroll"){
         VALUES (?, ?, 'Pending')
     ");
     $enroll->bind_param("si", $studentId, $courseId);
-    re("error", "Arrived Here tooo!");
+    //re("error", "Arrived Here tooo!");
     if(!$enroll->execute()){
         re("error", "Could Not Register");
     }
