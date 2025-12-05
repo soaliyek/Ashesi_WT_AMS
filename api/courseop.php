@@ -28,8 +28,8 @@ if($courseId === "" || $operation === "" || $studentId === ""){
 if($operation === "Enroll"){
     //re("error", "Arrived Here!");
     $enroll = $connection->prepare("
-        INSERT INTO EnrollRequests (studentId, courseId, status)
-        VALUES (?, ?, 'pending')
+        INSERT INTO EnrollRequests (studentId, courseId, rstatus)
+        VALUES (?, ?, 'Pending')
     ");
     $enroll->bind_param("si", $studentId, $courseId);
     re("error", "Arrived Here tooo!");
