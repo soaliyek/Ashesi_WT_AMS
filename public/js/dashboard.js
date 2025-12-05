@@ -39,7 +39,7 @@ enrollButtons.forEach(button =>{
             if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
                 // Process the reponse
                 const response = JSON.parse(request.responseText);
-                console.log("Successful: ", request.responseText);
+                //console.log("Successful: ", request.responseText);
                 //console.log("Response:", request.responseText);
                 //console.log("Response:", response);
 
