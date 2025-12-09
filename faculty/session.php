@@ -24,9 +24,6 @@
     }
 
     include("../config/database.php");
-
-    $deptQuery = "SELECT deptId, deptName FROM Departments ORDER BY deptName";
-    $departments = $connection->query($deptQuery);
 ?>
 
 <!DOCTYPE html>
@@ -41,25 +38,11 @@
     <div id="dashboard">
         <?php include_once("../includes/fheader.php"); ?>
         <div id="main">
-            <form id="createCourse">
-                <div id="departmentSelection">
-                    <select name="department" id="department">
-                        <option value="0">Select Department</option>
-                        <?php while($dept = $departments->fetch_assoc()): ?>
-                            <option value="<?= $dept['deptId']; ?>">
-                                <?= $dept['deptName']; ?>
-                            </option>
-                        <?php endwhile; ?>
-
-                    </select>
-                </div>
-                <input type="text" name="courseCode" class="entry" id="" placeholder="Course Code">
-                <input type="text" name="courseName" class="entry" id="" placeholder="Course Name">
-                <input type="submit" id="button" value="CREATE">
-            </form>
+            <div id="allcourses" class="content">
+                
+            </div>
         </div>
     </div>
     <script src="../public/js/logout.js"></script>
-    <script src="../public/js/dashboard.js"></script>
 </body>
 </html>

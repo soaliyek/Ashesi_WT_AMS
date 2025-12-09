@@ -40,11 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
             // SUCCESS → redirects based on role
             if (data.status === "success") {
                 if (data.role === "student") {
-                    window.location.href = "../student/dashboard.php";
+                    window.location.href = "../student/courses.php";
                 } else if (data.role === "faculty") {
-                    window.location.href = "../faculty/dashboard.php";
+                    window.location.href = "../faculty/courses.php";
                 } else if (data.role === "admin") {
-                    window.location.href = "../admin/dashboard.php";
+                    window.location.href = "../admin/courses.php";
                 }
             }
         })

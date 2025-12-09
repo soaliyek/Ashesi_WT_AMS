@@ -64,3 +64,36 @@ enrollButtons.forEach(button =>{
         request.send(data);
     });
 });
+
+
+const createCourse = document.getElementById("createCourse");
+createCourse.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const request = new XMLHttpRequest();
+    const data =  new FormData(e.target);
+
+    request.open("POST", "../api/createcourse.php", true);
+    //request.setRequestHeader("Content-Type", "application/json");
+
+    request.onreadystatechange = function(){
+        if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
+            // Process the reponse
+            const response = JSON.parse(request.responseText);
+            //console.log("Successful: ", request.responseText);
+            //console.log("Response:", request.responseText);
+            //console.log("Response:", response);
+
+            // In your AJAX success:
+            
+            if (response.status === "success") {
+                e.target.reset();
+            }
+
+        }else if(request.readyState === XMLHttpRequest.DONE && request.status !== 200){
+            console.log("Error:", request.status, request.statusText);
+        }
+    }
+
+    request.send(data);
+});
