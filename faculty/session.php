@@ -24,6 +24,9 @@
     }
 
     include("../config/database.php");
+    include_once("../sql/queries.php");
+
+    $courses = $connection->query($findallcourses);
 ?>
 
 <!DOCTYPE html>
@@ -38,11 +41,65 @@
     <div id="dashboard">
         <?php include_once("../includes/fheader.php"); ?>
         <div id="main">
-            <div id="allcourses" class="content">
-                
-            </div>
+            <h2 id="createSessionTitle">Create Attendence Session</h2>
+            <p id="return"></p>
+            <form id="createSession">
+                <div id="departmentSelection">
+                    <select name="courseId" id="courseSelect">
+                        <option value="0">Select Course</option>
+                        <?php while($course = $courses->fetch_assoc()): ?>
+                            <option value="<?= $course['courseId']; ?>">
+                                <?= $course['courseName']; ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+                <input type="text" name="sessionPIN" class="entry" id="" placeholder="Session PIN">
+                <input type="submit" id="button" value="CREATE">
+            </form>
         </div>
     </div>
     <script src="../public/js/logout.js"></script>
+    <script>
+        const createAttendanceSession = document.getElementById("createSession");
+        createAttendanceSession.addEventListener("submit", function(e){
+            e.preventDefault();
+
+            const request = new XMLHttpRequest();
+            const data =  new FormData(e.target);
+
+            request.open("POST", "../api/createSession.php", true);
+            //request.setRequestHeader("Content-Type", "application/json");
+            //alert("Hi");
+
+            request.onreadystatechange = function(){
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
+                    // Process the reponse
+                    const response = JSON.parse(request.responseText);
+                    //console.log("Successful: ", request.responseText);
+                    //console.log("Response:", request.responseText);
+                    //console.log("Response:", response);
+
+                    // In your AJAX success:
+                    
+                    if (response.status === "success") {
+                        e.target.reset();
+                        const ret = document.getElementById("return");
+                        ret.innerHTML = response.message;
+                    }
+                    const ret = document.getElementById("return");
+                    ret.innerHTML = response.message;
+                    
+
+                }else if(request.readyState === XMLHttpRequest.DONE && request.status !== 200){
+                    console.log("Error:", request.status, request.statusText);
+                }
+            }
+
+            request.send(data);
+        });
+
+    </script>
+    <!-- <script src="../public/js/adminops.js"></script> -->
 </body>
 </html>
